@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import requests
 import os
 
 app = Flask(__name__)
 
-# Replace with your Alpha Vantage API key
+# Alpha Vantage API Key - Replace with your actual key
 ALPHA_VANTAGE_API_KEY = "LXVUEX6IDEYL72GA"
+
+# Favicon route to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # Return empty response with "No Content" status
 
 def get_stock_symbol(company_name):
     """Convert company name to stock symbol"""
