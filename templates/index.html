@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Insights Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>📈 Stock Insights</h2>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header class="header">
+            <h1>Stock Market Insights Dashboard</h1>
+            <p>Get real-time stock data and performance charts for any company</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="companyInput" 
+                    placeholder="Enter company name (e.g., Apple, Tesla, Microsoft...)" 
+                    class="search-input"
+                >
+                <button id="searchBtn" class="search-btn">Search</button>
+            </div>
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Fetching stock data...</span>
+            </div>
+        </section>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message hidden"></div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard hidden">
+            <!-- Company Info Card -->
+            <div class="card company-card">
+                <h3>Company Information</h3>
+                <div class="company-info">
+                    <div class="info-item">
+                        <label>Company Name:</label>
+                        <span id="companyName">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Stock Symbol:</label>
+                        <span id="stockSymbol">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Region:</label>
+                        <span id="companyRegion">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Currency:</label>
+                        <span id="companyCurrency">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Price Card -->
+            <div class="card price-card">
+                <h3>Current Price</h3>
+                <div class="price-display">
+                    <span id="currentPrice" class="price">-</span>
+                    <span id="priceChange" class="price-change"></span>
+                </div>
+                <div class="price-details">
+                    <div class="detail-item">
+                        <span class="label">Open</span>
+                        <span id="openPrice" class="value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Previous Close</span>
+                        <span id="previousClose" class="value">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Range Card -->
+            <div class="card range-card">
+                <h3>Price Range</h3>
+                <div class="range-details">
+                    <div class="range-item">
+                        <span class="label">Day High</span>
+                        <span id="dayHigh" class="value high">-</span>
+                    </div>
+                    <div class="range-item">
+                        <span class="label">Day Low</span>
+                        <span id="dayLow" class="value low">-</span>
+                    </div>
+                    <div class="range-item">
+                        <span class="label">Volume</span>
+                        <span id="volume" class="value">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Card -->
+            <div class="card chart-card">
+                <h3>30-Day Performance</h3>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
